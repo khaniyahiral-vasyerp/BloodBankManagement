@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Blood - Blood Bank Management System</title>
+  <style>
+    /* styles.css */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    header {
+      background-color: #dc3545;
+      color: white;
+      padding: 20px 0;
+    }
+
+    header h1 {
+      text-align: center;
+    }
+
+    nav ul {
+      list-style-type: none;
+      text-align: center;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    h2 {
+      margin-top: 40px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #dc3545;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #c82333;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Blood Bank Management System</h1>
+    <nav>
+      <ul>
+        <li><a th:href="@{/blood/Home}">Home</a></li>
+        <li><a th:href="@{/appointments}">View Appointments</a></li>
+        <li><a th:href="@{/inventory}">View Inventory</a></li>
+        <li><a th:href="@{/blood/addDoner}">Donate Blood</a></li>
+        <li><a th:href="@{/blood/addBloodDonateRequest}">Request for Blood </a></li>
+        <li><a th:href="@{/requestcomplet}">Request Completed</a></li>
+        <li><a th:href="@{/addInventory}">Add Inventory</a></li>
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <h2>Enter Your  Details To Request For Blood</h2>
+  <form action="#" th:action="@{/addBloodDonateRequest}" method="post">
+    <div class="form-group">
+      <label for="bloodType">Blood Type:</label>
+      <select id="bloodType" name="bloodType">
+        <option th:each="type : ${bloodTypes}" th:value="${type}" th:text="${type}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantity (in units):</label>
+      <input type="number" id="quantity" name="quantity" min="1" required>
+    </div>
+    <div class="form-group">
+      <label for="patientName">Patient Name:</label>
+      <input type="text" id="patientName" name="patientName" required>
+    </div>
+    <div class="form-group">
+      <label for="hospital">Hospital:</label>
+      <input type="text" id="hospital" name="hospital" required>
+    </div>
+    <button type="submit">Submit Request</button>
+  </form>
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2024 Blood Bank Management System</p>
+  </div>
+</footer>
+</body>
+</html>

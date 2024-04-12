@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Blood Donor - Blood Bank Management System</title>
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: #dc3545;
+            color: white;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        h2 {
+            margin-top: 40px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #c82333;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Blood Bank Management System</h1>
+        <nav>
+            <ul>
+                <li><a th:href="@{/blood/Home}">Home</a></li>
+                <li><a th:href="@{/appointments}">View Appointments</a></li>
+                <li><a th:href="@{/inventory}">View Inventory</a></li>
+                <li><a th:href="@{/blood/addDonor}">Donate Blood</a></li>
+                <li><a th:href="@{/blood/addBloodDonateRequest}">Request for Blood </a></li>
+                <li><a th:href="@{/requestcomplet}">Request Completed</a></li>
+                <li><a th:href="@{/addInventory}">Add Inventory</a></li>
+
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <h2> Blood Donor</h2>
+    <form  th:action="@{/blood/addDonor}" method="post" th:object="${donor}">
+        <input  type="hidden"   th:field="*{id}">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required th:field="*{name}">
+        </div>
+        <div class="form-group">
+            <label for="bloodType">Blood Type:</label>
+            <input  type="text" id="bloodType" name="bloodGroup" required th:field="*{bloodGroup}">
+          </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="18" required   th:field="*{age}">
+        </div>
+        <div class="form-group">
+            <label for="weight">Weight (in kg):</label>
+            <input type="number" id="weight" name="weight" min="40" required  th:field="*{weight}">
+        </div>
+        <button type="submit">Add Donor</button>
+    </form>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Blood Bank Management System</p>
+    </div>
+</footer>
+</body>
+</html>
